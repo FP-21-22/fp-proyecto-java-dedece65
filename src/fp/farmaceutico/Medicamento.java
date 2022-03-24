@@ -7,6 +7,7 @@ import fp.utiles.Checkers;
 
 public class Medicamento implements Comparable<Medicamento> {
 	//Atributos
+	
 	private String nombreMedicamento;//observable
 	private TipoMedicamento tipoMedicamento;//observable
 	private String codigoEnfermedad;//observable
@@ -14,13 +15,12 @@ public class Medicamento implements Comparable<Medicamento> {
 	private Double puntuacion;//observable
 	private Integer indiceSomatico;//observable
 	private LocalDate fechaCatalogo;//observable y modificable
-	private Boolean tratarEnfermedad;//DERIVADA DE ABAJO (PUESTO PARA NO ERROR EN EL CODIGO PERO NO VA AQUI)
 	
 	//Derivadas
 	
-	private Boolean tratarEnfermedad(String cadena) {
+	public Boolean tratarEnfermedad(String cadena) {
 		Boolean res = false;
-		if(this.codigoEnfermedad == cadena) {
+		if(cadena.equals(getCodigoEnfermedad())) {
 			res = true;
 		}
 		return res;
@@ -68,12 +68,6 @@ public class Medicamento implements Comparable<Medicamento> {
 	public Integer getIndiceSomatico() {
 		return indiceSomatico;
 	}
-	
-	//-----------------------------------	GET DEL METODO DERIVADO --------------------------------
-	public Boolean getTratarEnfermedad() {
-		return tratarEnfermedad;
-	}
-	//----------------------------------------------------------------------------------------------
 
 	// Metodos adicionales
 	//	a) Representacion como cadena (redefinir el toString())
@@ -87,8 +81,7 @@ public class Medicamento implements Comparable<Medicamento> {
 	public String toString() {
 		return "Medicamento [nombreMedicamento=" + nombreMedicamento + ", tipoMedicamento=" + tipoMedicamento
 				+ ", codigoEnfermedad=" + codigoEnfermedad + ", farmaceutica=" + farmaceutica + ", puntuacion="
-				+ puntuacion + ", indiceSomatico=" + indiceSomatico + ", fechaCatalogo=" + fechaCatalogo
-				+ ", tratarEnfermedad=" + tratarEnfermedad + "]";
+				+ puntuacion + ", indiceSomatico=" + indiceSomatico + ", fechaCatalogo=" + fechaCatalogo;
 	}
 	
 	//	b) Igualdad (Redefinir el equals y hashCode)
