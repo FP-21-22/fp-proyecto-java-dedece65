@@ -1,33 +1,29 @@
-# Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  \<XX\>/\<YY\>)
-Autor/a: \<nombre del autor\>   uvus:\<uvus del autor\>
-
-Aquí debes añadir la descripción del dataset y un enunciado del dominio del proyecto.
+# Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  2021/2022)
+Autor/a: Daniel del Castillo Piñero   uvus: dandelpin
 
 
 ## Estructura de las carpetas del proyecto
 
 * **/src**: Contiene los diferentes archivos que forman parte del proyecto. Debe estar estructurado en los siguentes paquetes
-  * **fp.\<dominio\>**: Paquete que contiene los tipos del proyecto.
-  * **fp.\<dominio\>.test**: Paquete que contiene las clases de test del proyecto.
-  * **fp.common**: Paquete que contiene los tipos auxiliares del proyecto
+  * **fp.clinico**: Paquete que contiene los tipos del proyecto.
+  * **fp.farmaceutico**: Paquete que contiene los tipos del proyecto.
+  * **fp.farmaceutico.test**: Paquete que contiene las clases de test del proyecto.
+  * **fp.vacunas**: Paquete que contiene los tipos del proyecto.
   * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
-* **/data**: Contiene el dataset o datasets del proyecto
-    * **\<dataset1.csv\>**: Añade una descripción genérica del dataset.
-    * **\<dataset2.csv\>**: Añade una descripción del resto de datasets que puedas tener.
-    
-## Estructura del *dataset*
 
-Aquí debes describir la estructura del dataset explicando qué representan los datos que contiene y la descripción de cada una de las columnas. Incluye también la URL del dataset original.
-
-El dataset está compuesto por \<N\> columnas, con la siguiente descripción:
-
-* **\<columna 1>**: de tipo \<tipo\>, representa....
-* **\<columna 2>**: de tipo \<tipo\>, representa....
-....
 
 ## Tipos implementados
 
-Describe aquí los tipos que usas en tu proyecto.
+Los tipos implementados son:
+  * **Tipo Paciente**: Record.
+  * **Tipo PacienteEstudio**: Record.
+  * **Tipo Persona**: Record.
+  * **Tipo TipoResidencia**: Enumerado.
+  * **Tipo FactoriaMedicamentos**: Clase, contiene el parseo de la clase Medicamento.
+  * **Tipo Medicamento**: Clase.
+  * **Tipo TipoMedicamento**: Enumerado.
+  * **Tipo TestMedicamentos**: Clase. Modulo test de la clase Medicamento y FactoriaMedicamentos.
+  * **Tipo Vacunacion**: Record.
 
 ### Tipo Base
 Descripción breve del tipo base.
