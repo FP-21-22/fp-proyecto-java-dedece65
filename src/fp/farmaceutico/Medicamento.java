@@ -8,13 +8,13 @@ import fp.utiles.Checkers;
 public class Medicamento implements Comparable<Medicamento> {
 	//Atributos
 	
-	private String nombreMedicamento;//observable
-	private TipoMedicamento tipoMedicamento;//observable
-	private String codigoEnfermedad;//observable
-	private String farmaceutica;//observable
-	private Double puntuacion;//observable
-	private Integer indiceSomatico;//observable
-	private LocalDate fechaCatalogo;//observable y modificable
+	public String nombreMedicamento;//observable
+	public TipoMedicamento tipoMedicamento;//observable
+	public String codigoEnfermedad;//observable
+	public String farmaceutica;//observable
+	public Double puntuacion;//observable
+	public Integer indiceSomatico;//observable
+	public LocalDate fechaCatalogo;//observable y modificable
 	
 	//Derivadas
 	
@@ -79,9 +79,9 @@ public class Medicamento implements Comparable<Medicamento> {
 
 	@Override
 	public String toString() {
-		return "Medicamento [nombreMedicamento=" + nombreMedicamento + ", tipoMedicamento=" + tipoMedicamento
-				+ ", codigoEnfermedad=" + codigoEnfermedad + ", farmaceutica=" + farmaceutica + ", puntuacion="
-				+ puntuacion + ", indiceSomatico=" + indiceSomatico + ", fechaCatalogo=" + fechaCatalogo;
+		return "Medicamento [nombreMedicamento = " + nombreMedicamento + ", tipoMedicamento = " + tipoMedicamento
+				+ ", codigoEnfermedad = " + codigoEnfermedad + ", farmaceutica = " + farmaceutica + ", puntuacion = "
+				+ puntuacion + ", indiceSomatico = " + indiceSomatico + ", fechaCatalogo = " + fechaCatalogo;
 	}
 	
 	//	b) Igualdad (Redefinir el equals y hashCode)
