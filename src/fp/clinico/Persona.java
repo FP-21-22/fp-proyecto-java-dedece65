@@ -19,7 +19,9 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 		}
 		return res;
 	}
+	
 	// Factoria
+	
 	public static Persona of(String nombre, String apellidos, String dni, LocalDate fechaNacimiento) {
 		//Restricciones
 		//----------------------
@@ -45,12 +47,15 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 		LocalDate fechaNacimiento = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		return Persona.of(nombre, apellidos, dni, fechaNacimiento);
 	}
+	
 	//Orden natural - (por dni)
+	
 	public int compareTo(Persona p) {
 		//
 		int res = this.dni().compareTo(p.dni());
 		return res;
 	}
+	
 	//Metodos derivados
 	public Integer edad() {
 		//

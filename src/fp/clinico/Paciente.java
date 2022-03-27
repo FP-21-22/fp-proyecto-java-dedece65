@@ -28,6 +28,17 @@ public record Paciente(Persona persona, String codigoIngreso, LocalDateTime fech
 		return res;
 	}
 	
+	// Metodos derivados
+	
+	public LocalDate fechaIngreso() {
+		LocalDate res = LocalDate.of(fechaHoraIngreso.getYear(), fechaHoraIngreso.getMonth(), fechaHoraIngreso.getDayOfMonth());
+		return res;
+	}
+	public String horaIngreso() {
+		String res = fechaHoraIngreso.getHour() + ":" + fechaHoraIngreso.getMinute();
+		return res;
+	}
+	
 	//	Criterio de igualdad - (equals & hashCode)
 	
 	@Override
