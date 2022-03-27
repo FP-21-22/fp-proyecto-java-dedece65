@@ -12,7 +12,7 @@ public class Medicamento implements Comparable<Medicamento> {
 	public TipoMedicamento tipoMedicamento;//observable
 	public String codigoEnfermedad;//observable
 	public String farmaceutica;//observable
-	public Double puntuacion;//observable
+	public Double puntacion;//observable
 	public Integer indiceSomatico;//observable
 	public LocalDate fechaCatalogo;//observable y modificable
 	
@@ -28,9 +28,9 @@ public class Medicamento implements Comparable<Medicamento> {
 
 	//Constructores
 	public Medicamento(String nombreMedicamento, TipoMedicamento tipoMedicamento, String codigoEnfermedad,
-			String farmaceutica, Double puntuacion, Integer indiceSomatico, LocalDate fechaCatalogo) {
+			String farmaceutica, Double puntacion, Integer indiceSomatico, LocalDate fechaCatalogo) {
 		//RESTRICCIONES---------------------
-		Checkers.check("R1: ...", puntuacion > 0);
+		Checkers.check("R1: ...", puntacion > 0);
 		Checkers.check("R2: ...", indiceSomatico >= 1000);
 		Checkers.check("R3: ...", fechaCatalogo.isAfter(LocalDate.of(2015, 1, 1)));
 		//----------------------------------
@@ -38,7 +38,7 @@ public class Medicamento implements Comparable<Medicamento> {
 		this.tipoMedicamento = tipoMedicamento;
 		this.codigoEnfermedad = codigoEnfermedad;
 		this.farmaceutica = farmaceutica;
-		this.puntuacion = puntuacion;
+		this.puntacion = puntacion;
 		this.indiceSomatico = indiceSomatico;
 		this.fechaCatalogo = fechaCatalogo;
 	}
@@ -62,8 +62,8 @@ public class Medicamento implements Comparable<Medicamento> {
 	public String getFarmaceutica() {
 		return farmaceutica;
 	}
-	public Double getPuntuacion() {
-		return puntuacion;
+	public Double getPuntacion() {
+		return puntacion;
 	}
 	public Integer getIndiceSomatico() {
 		return indiceSomatico;
@@ -80,8 +80,8 @@ public class Medicamento implements Comparable<Medicamento> {
 	@Override
 	public String toString() {
 		return "Medicamento [nombreMedicamento = " + nombreMedicamento + ", tipoMedicamento = " + tipoMedicamento
-				+ ", codigoEnfermedad = " + codigoEnfermedad + ", farmaceutica = " + farmaceutica + ", puntuacion = "
-				+ puntuacion + ", indiceSomatico = " + indiceSomatico + ", fechaCatalogo = " + fechaCatalogo;
+				+ ", codigoEnfermedad = " + codigoEnfermedad + ", farmaceutica = " + farmaceutica + ", puntacion = "
+				+ puntacion + ", indiceSomatico = " + indiceSomatico + ", fechaCatalogo = " + fechaCatalogo;
 	}
 	
 	//	b) Igualdad (Redefinir el equals y hashCode)

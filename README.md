@@ -91,43 +91,77 @@ Los tipos implementados son:
 - R1: La edad tiene que ser mayor o igual que cero y menor o igual que 130. 
 - R2:  El nivel medio de glucosa tiene que ser mayor o igual que cero.
 
-**Representación como cadena: Por defecto asociado al record.
+**Representación como cadena**: Por defecto asociado al record.
 
 **Criterio de igualdad**: Por defecto asociado al record.
 
+**Criterio de orden**: Segun la edad y el id.
+
 **Otras operaciones**:
  
--	Metodo static of: recibe nombre, apellidos, dni y fecha de nacimiento, codigo y fecha y hora de ingreso y devuelve un paciente.
--	Metodo static of: recibe un objeto persona, un codigo y una fecha y hora de ingreso y devuelve un paciente.
+-	Metodo static of: Recibe valores para cada propiedad básica y devuelve un objeto del tipo.
+- 	Metodo static parse: Recibe una cadena con un formato especifico y devuelve un objeto del tipo.
+-	Metodo main para comprobar el correcto funcionamiento del metodo parse.
 
-
-### Tipo Contenedor
-
-Descripción breve del tipo contenedor.
+### Tipo Vacunacion (Record)
 
 **Propiedades**:
 
-- _propiedad1_, de tipo \<Tipo1\>, consultable. 
-- _propiedad2_, de tipo \<Tipo2\>, consultable y modificable. 
-- ...
-- 
-**Constructores**: 
-
-- C1: Descripción del constructor 1.
-- C2: Descripción del constructor 2.
-- ...
+- fecha, de tipo LocalDate.
+- comunidad, de tipo String.
+- pfizer, de tipo Integer.
+- moderna, de tipo Integer.
+- astrazeneca, de tipo Integer.
+- janssen, de tipo Integer.
+- numero de personas, de tipo Integer.
+- numero total, de tipo integer (Derivada, siendo la suma de dosis de Pfizer, moderna, astrazeneca y janssen).
 
 **Restricciones**:
  
-- R1: Descripción de la restricción 1.
-- R2: Descripción de la restricción 2.
-- ...
-- 
-**Criterio de igualdad**: Describir el criterio de igualdad
+- R1: La fecha debe ser posterior al 10/02/2021.
 
-**Criterio de ordenación**: Describir el criterio de ordenación (si lo hay).
+**Representación como cadena**: Por defecto asociado al record.
+
+**Criterio de igualdad**: Por defecto asociado al record.
+
+**Criterio de orden**: Por comunidad y en caso de igualdad por fecha.
 
 **Otras operaciones**:
  
--	_método 1_: Descripción del método 1.
-- ...
+-	Metodo static of: Recibe valores para cada propiedad básica y devuelve un objeto del tipo.
+- 	Metodo static parse: Recibe una cadena con un formato especifico y devuelve un objeto del tipo.
+-	Metodo main para comprobar el correcto funcionamiento del metodo parse.
+
+
+### Tipo Medicamento (Clase)
+
+**Propiedades**:
+
+- nombre del medicamento, de tipo String, observable. 
+- tipo de medicamento, enumerado de tipo TipoMedicamento, observable. Los valores del enumerado son anatomico, quimico y terapeutico.
+- codigo de la enfermedad, de tipo String, observable.
+- farmaceutica, de tipo String, observable.
+- puntacion, de tipo Double, observable.
+- indice somatico, de tipo Integer, observable.
+- fecha de catalogo, de tipo LocalDate, observable y modificable.
+- tratar enfermedad, de tipo Boolean. (Derivada, siendo cierta si el codigo de la enfermedad coincide con un parametro de tipo cadena
+que recibe como argumento la propiedad).
+
+**Restricciones**:
+ 
+- R1: La puntacion debe ser mayor estricta que cero.
+- R2: El indice somatico tiene que ser mayor o igual que 1000.
+- R3: La fecha de catalogo tiene que ser posterior al 01/01/2015.
+
+**Representacion como cadena**: Segun el nombre del medicamento y de la farmaceutica.
+
+**Criterio de igualdad**: Por nombre del medicamento y farmaceutica.
+
+**Orden natural**: Por nombre del medicamento y en caso de igualdad por la farmaceutica.
+
+**Otras operaciones**:
+ 
+-	Clase FactoriaMedicamentos: Se ha programado una clase FactoriaMedicamentos que incluye, de momento, un metodo static de nombre 
+parseaMedicamento, que recibe una cadena con un formato especifico y devuelve un objeto del tipo Medicamento.
+- 	Clase TestFactoriaMedicamentos: Se ha implementado tambien una clase de nombre TestFactoriaMedicamentos que comprueba el correcto funcionamiento
+del metodo anterior.

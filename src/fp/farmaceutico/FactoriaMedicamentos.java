@@ -17,10 +17,10 @@ public class FactoriaMedicamentos {
 		TipoMedicamento tipoMedicamento = TipoMedicamento.valueOf(Medicamento[1]);
 		String codigoEnfermedad = Medicamento[2];
 		String farmaceutica = Medicamento[3];
-		Double puntuacion = Double.parseDouble(Medicamento[4]);
+		Double puntacion = Double.parseDouble(Medicamento[4]);
 		Integer indiceSomatico = Integer.parseInt(Medicamento[5]);
 		String fecha = Medicamento[6].strip();
 		LocalDate fechaCatalogo = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		return new Medicamento (nombreMedicamento, tipoMedicamento, codigoEnfermedad, farmaceutica, puntuacion, indiceSomatico, fechaCatalogo);
+		return new Medicamento (nombreMedicamento, tipoMedicamento, codigoEnfermedad, farmaceutica, puntacion, indiceSomatico, fechaCatalogo);
 	}
 }
