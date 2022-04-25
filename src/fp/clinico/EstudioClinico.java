@@ -19,12 +19,12 @@ public interface EstudioClinico {
 	void borraEstudio();
 
 	//
-	// Método de factoría
+	// Metodo de factoria
 	EstudioClinico of(String nombreFichero);
 
 	List<PacienteEstudio> leeFichero(String nombreFichero);
 
-	// Tratamientos secuenciales: implementaciónn funcional vs. imperativa
+	// Tratamientos secuenciales: implementacion funcional vs. imperativa
 	// existe, paraTodo
 	Boolean todosPacienteSonDelTipo(TipoResidencia tipo);
 
@@ -41,7 +41,7 @@ public interface EstudioClinico {
 	// devuelve Map que agrupa
 	Map<String, List<Paciente>> agruparPacientesEdadMayorQuePorGenero(Double edad);
 
-	// devuelve Map que realiza un cálculo
+	// devuelve Map que realiza un calculo
 	Map<String, Long> numeroPacientesPorGenero();
 
 	Map<String, Double> edadMediaPacientesPorPorGenero();

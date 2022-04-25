@@ -15,8 +15,7 @@ public record Paciente(Persona persona, String codigoIngreso, LocalDateTime fech
 		Checkers.check("La fecha y hora de ingreso debe ser anterior a la de hoy", !fechaHoraIngreso.isAfter(now));
 		//--------------------
 		Persona persona = Persona.of(nombre, apellidos, dni, fechaNacimiento);
-		Paciente res = new Paciente(persona, codigoIngreso, fechaHoraIngreso);
-		return res;
+		return new Paciente(persona, codigoIngreso, fechaHoraIngreso);
 	}
 	public static Paciente of(Persona persona, String codigoIngreso, LocalDateTime fechaHoraIngreso) {
 		//RESTRICCIONES
@@ -24,19 +23,16 @@ public record Paciente(Persona persona, String codigoIngreso, LocalDateTime fech
 		LocalDateTime now = LocalDateTime.now();
 		Checkers.check("La fecha y hora de ingreso debe ser anterior a la de hoy", !fechaHoraIngreso.isAfter(now));
 		//--------------------
-		Paciente res = new Paciente(persona, codigoIngreso, fechaHoraIngreso);
-		return res;
+		return new Paciente(persona, codigoIngreso, fechaHoraIngreso);
 	}
 	
 	// Metodos derivados
 	
 	public LocalDate fechaIngreso() {
-		LocalDate res = LocalDate.of(fechaHoraIngreso.getYear(), fechaHoraIngreso.getMonth(), fechaHoraIngreso.getDayOfMonth());
-		return res;
+		return LocalDate.of(fechaHoraIngreso.getYear(), fechaHoraIngreso.getMonth(), fechaHoraIngreso.getDayOfMonth());
 	}
 	public String horaIngreso() {
-		String res = fechaHoraIngreso.getHour() + ":" + fechaHoraIngreso.getMinute();
-		return res;
+		return fechaHoraIngreso.getHour() + ":" + fechaHoraIngreso.getMinute();
 	}
 	
 	//	Criterio de igualdad - (equals & hashCode)
