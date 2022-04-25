@@ -10,13 +10,13 @@ import java.util.Map;
 
 public class EstudioClinicoBucles implements EstudioClinico {
 
-	private List<PacienteEstudio> pacientes;
+	private List<PacienteEstudio> Pacientes;
 
 	public EstudioClinicoBucles() {
 	}
 
 	public EstudioClinicoBucles(List<PacienteEstudio> pacientes) {
-		this.pacientes = pacientes;
+		this.Pacientes = pacientes;
 	}
 
 	@Override

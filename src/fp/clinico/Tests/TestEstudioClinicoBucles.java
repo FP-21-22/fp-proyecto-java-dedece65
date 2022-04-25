@@ -11,8 +11,8 @@ public class TestEstudioClinicoBucles {
         EstudioClinico estudio = new EstudioClinicoBucles();
         String ruta = "data/estudio_clinico.csv";
         List<PacienteEstudio> lista = estudio.leeFichero(ruta);
-        for(PacienteEstudio p : lista){
-            System.out.println(p);
+        for(PacienteEstudio paciente : lista){
+            System.out.println(paciente);
         }
     }
 }
