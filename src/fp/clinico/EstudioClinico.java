@@ -19,7 +19,7 @@ public interface EstudioClinico {
 	void borraEstudio();
 
 	//
-	// Metodo de factoria
+	// Método de factoria
 	EstudioClinico of(String nombreFichero);
 
 	List<PacienteEstudio> leeFichero(String nombreFichero);

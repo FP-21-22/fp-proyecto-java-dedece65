@@ -1,58 +1,56 @@
 package fp.clinico;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EstudioClinicoBucles implements EstudioClinico {
 
-	private List<PacienteEstudio> pacientes;
+	private List<PacienteEstudio> listaPacientes;
 
 	public EstudioClinicoBucles() {
 	}
 
-	public EstudioClinicoBucles(List<PacienteEstudio> pacientes) {
-		this.pacientes = pacientes;
+	public EstudioClinicoBucles(List<PacienteEstudio> listaPacientes) {
+		this.listaPacientes = listaPacientes;
 	}
 
 	@Override
 	public Integer numeroPacientes() {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		return listaPacientes.size();
 	}
 
 	@Override
 	public void incluyePaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-
+		//
+		listaPacientes.add(paciente);
 	}
 
 	@Override
 	public void incluyePacientes(Collection<PacienteEstudio> pacientes) {
-		// TODO Auto-generated method stub
-
+		//
+		listaPacientes.addAll(pacientes);
 	}
 
 	@Override
 	public void eliminaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-
+		//
+		listaPacientes.remove(paciente);
 	}
 
 	@Override
 	public Boolean estaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		return listaPacientes.contains(paciente);
 	}
 
 	@Override
 	public void borraEstudio() {
-		// TODO Auto-generated method stub
-
+		//
+		listaPacientes.clear();
 	}
 
 	@Override
@@ -85,6 +83,8 @@ public class EstudioClinicoBucles implements EstudioClinico {
 		return res;
 	}
 
+	// Método auxiliar
+
 	private static PacienteEstudio parseaLinea(String cadena) {
 		//[id=16770, genero=Female, edad=38.0, hipertension=false,
 		// enfermedadCorazon=false, tipoResidencia=RURAL, nivelMedioGlucosa=91.23]
@@ -115,20 +115,43 @@ public class EstudioClinicoBucles implements EstudioClinico {
 
 	@Override
 	public Integer numeroPacientesFactorRiesgo() {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		int res = 0;
+		for (PacienteEstudio p : this.listaPacientes) {
+			if (p.factorDeRiesgo()) {
+				res++;
+			}
+		}
+		return res;
 	}
 
 	@Override
 	public Double edadMediaPacientesConFactorRiesgo() {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		List<Double> edades = new ArrayList<>();
+		double media = 0;
+		for (PacienteEstudio p : this.listaPacientes) {
+			if(p.factorDeRiesgo()){
+				edades.add(p.edad());
+			}
+		}
+		for (Double num : edades) {
+			media = media + num;
+		}
+		media = media / edades.size();
+		return media;
 	}
 
 	@Override
 	public List<PacienteEstudio> filtraPacientesPorEdad(Double edad) {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		List<PacienteEstudio> res = new ArrayList<>();
+		for (PacienteEstudio p : this.listaPacientes) {
+			if(p.edad().equals(edad)){
+				res.add(p);
+			}
+		}
+		return res;
 	}
 
 	@Override
@@ -139,14 +162,44 @@ public class EstudioClinicoBucles implements EstudioClinico {
 
 	@Override
 	public Map<String, Long> numeroPacientesPorGenero() {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		Map<String, Long> res = new HashMap<>();
+		for(PacienteEstudio p : this.listaPacientes){
+			String clave = p.genero();
+			if (!res.containsKey(clave)) {
+				//Primera vez
+				res.put(clave, 1L);
+			}else{
+				res.put(clave, res.get(clave) + 1);
+			}
+		}
+		return res;
 	}
 
 	@Override
 	public Map<String, Double> edadMediaPacientesPorPorGenero() {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		Map<String, Double> res = new HashMap<>();
+		List<Double> edadesMale = new ArrayList<>();
+		List<Double> edadesFemale = new ArrayList<>();
+		for (PacienteEstudio p : this.listaPacientes) {
+			if (p.genero().equals("Male")) {
+				edadesMale.add(p.edad());
+			} else {
+				edadesFemale.add(p.edad());
+			}
+		}
+		double mediaMale = 0;
+		double mediaFemale = 0;
+		for(Double edad : edadesMale){
+			mediaMale = mediaMale + edad;
+		}
+		for (Double edad : edadesFemale) {
+			mediaFemale = mediaFemale + edad;
+		}
+		res.put("Male", mediaMale / edadesMale.size());
+		res.put("Female", mediaFemale / edadesFemale.size());
+		return res;
 	}
 
 }
