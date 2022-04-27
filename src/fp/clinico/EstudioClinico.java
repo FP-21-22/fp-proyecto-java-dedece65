@@ -39,7 +39,7 @@ public interface EstudioClinico {
 	List<PacienteEstudio> filtraPacientesPorEdad(Double edad);
 
 	// devuelve Map que agrupa
-	Map<String, List<Paciente>> agruparPacientesEdadMayorQuePorGenero(Double edad);
+	Map<String, List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad);
 
 	// devuelve Map que realiza un calculo
 	Map<String, Long> numeroPacientesPorGenero();

@@ -13,10 +13,9 @@ public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Inte
 		//Restricciones
 		//---------------------
 		LocalDate now = LocalDate.now();
-		Checkers.check("La fecha debe ser posterior al 01/02/2021", now.isAfter(LocalDate.of(2021, 2, 1)));
+		Checkers.check("La fecha debe ser posterior al 02/01/2021", now.isAfter(LocalDate.of(2021, 1, 2)));
 		//---------------------
-		Vacunacion res = new Vacunacion(fecha, comunidad, pfizer, moderna, astrazeneca, janssen, numeroPersonas);
-		return res;
+		return new Vacunacion(fecha, comunidad, pfizer, moderna, astrazeneca, janssen, numeroPersonas);
 	}
 	
 	// Metodo parse
@@ -39,8 +38,7 @@ public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Inte
 	//Metodos derivados
 	public Integer numeroTotal() {
 		//
-		Integer res = this.pfizer() + this.moderna() + this.astrazeneca() + this.janssen();
-		return res;
+		return this.pfizer() + this.moderna() + this.astrazeneca() + this.janssen();
 	}
 	
 	// Criterio de igualdad - (equals & hashCode)

@@ -1,6 +1,8 @@
 package fp.clinico;
 
 
+import fp.utiles.Checkers;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,56 +10,56 @@ import java.util.*;
 
 public class EstudioClinicoBucles implements EstudioClinico {
 
-	private List<PacienteEstudio> listaPacientes;
+	private final List<PacienteEstudio> listaPacientes;
 
 	public EstudioClinicoBucles() {
+		listaPacientes = new ArrayList<>();
 	}
 
-	public EstudioClinicoBucles(List<PacienteEstudio> listaPacientes) {
-		this.listaPacientes = listaPacientes;
+	public EstudioClinicoBucles(List<PacienteEstudio> pacientes) { this.listaPacientes = pacientes;
 	}
 
 	@Override
 	public Integer numeroPacientes() {
 		//
-		return listaPacientes.size();
+		return this.listaPacientes.size();
 	}
 
 	@Override
 	public void incluyePaciente(PacienteEstudio paciente) {
 		//
-		listaPacientes.add(paciente);
+		this.listaPacientes.add(paciente);
 	}
 
 	@Override
 	public void incluyePacientes(Collection<PacienteEstudio> pacientes) {
 		//
-		listaPacientes.addAll(pacientes);
+		this.listaPacientes.addAll(pacientes);
 	}
 
 	@Override
 	public void eliminaPaciente(PacienteEstudio paciente) {
 		//
-		listaPacientes.remove(paciente);
+		this.listaPacientes.remove(paciente);
 	}
 
 	@Override
 	public Boolean estaPaciente(PacienteEstudio paciente) {
 		//
-		return listaPacientes.contains(paciente);
+		return this.listaPacientes.contains(paciente);
 	}
 
 	@Override
 	public void borraEstudio() {
 		//
-		listaPacientes.clear();
+		this.listaPacientes.clear();
 	}
 
 	@Override
 	public EstudioClinico of(String nombreFichero) {
 		//
-		List<PacienteEstudio> res = leeFichero(nombreFichero);
-		return new EstudioClinicoBucles(res);
+		List<PacienteEstudio> pacientes = leeFichero(nombreFichero);
+		return new EstudioClinicoBucles(pacientes);
 	}
 
 	@Override
@@ -70,16 +72,11 @@ public class EstudioClinicoBucles implements EstudioClinico {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// Hay que saltarse la primera línea
-		int cont = 0;
 		assert aux != null;
 		for(String e:aux) {
-			if(cont>0) {
-				PacienteEstudio p = parseaLinea(e);
-				res.add(p);
-			}
-			cont++;
-		}		
+			PacienteEstudio p = parseaLinea(e);
+			res.add(p);
+		}
 		return res;
 	}
 
@@ -88,7 +85,9 @@ public class EstudioClinicoBucles implements EstudioClinico {
 	private static PacienteEstudio parseaLinea(String cadena) {
 		//[id=16770, genero=Female, edad=38.0, hipertension=false,
 		// enfermedadCorazon=false, tipoResidencia=RURAL, nivelMedioGlucosa=91.23]
+		Checkers.checkNoNull("Cadena vacia", cadena);
 		String[] aux = cadena.split(";");
+		Checkers.check("Error parametros", aux.length == 7);
 		//
 		String id = aux[0].trim();
 		String genero = aux[1].trim();
@@ -103,14 +102,28 @@ public class EstudioClinicoBucles implements EstudioClinico {
 
 	@Override
 	public Boolean todosPacienteSonDelTipo(TipoResidencia tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		boolean res = true;
+		for(PacienteEstudio p : this.listaPacientes){
+			if (!p.tipoResidencia().equals(tipo)) {
+				res = false;
+				break;
+			}
+		}
+		return res;
 	}
 
 	@Override
 	public Boolean existeAlgunPacienteDelTipo(TipoResidencia tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		boolean res = false;
+		for (PacienteEstudio p : this.listaPacientes) {
+			if (p.tipoResidencia().equals(tipo)) {
+				res = true;
+				break;
+			}
+		}
+		return res;
 	}
 
 	@Override
@@ -128,18 +141,15 @@ public class EstudioClinicoBucles implements EstudioClinico {
 	@Override
 	public Double edadMediaPacientesConFactorRiesgo() {
 		//
-		List<Double> edades = new ArrayList<>();
-		double media = 0;
+		double sumEdad = 0;
+		int numEdades = 0;
 		for (PacienteEstudio p : this.listaPacientes) {
-			if(p.factorDeRiesgo()){
-				edades.add(p.edad());
+			if (p.factorDeRiesgo()) {
+				sumEdad = sumEdad + p.edad();
+				numEdades++;
 			}
 		}
-		for (Double num : edades) {
-			media = media + num;
-		}
-		media = media / edades.size();
-		return media;
+		return sumEdad / numEdades;
 	}
 
 	@Override
@@ -155,9 +165,21 @@ public class EstudioClinicoBucles implements EstudioClinico {
 	}
 
 	@Override
-	public Map<String, List<Paciente>> agruparPacientesEdadMayorQuePorGenero(Double edad) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad) {
+		//
+		Map<String, List<PacienteEstudio>> res = new HashMap<>();
+		for (PacienteEstudio p : this.listaPacientes) {
+			if (p.edad() > edad) {
+				if (!res.containsKey(p.genero())) {
+					List<PacienteEstudio> l = new ArrayList<>();
+					l.add(p);
+					res.put(p.genero(), l);
+				}else{
+					res.get(p.genero()).add(p);
+				}
+			}
+		}
+		return res;
 	}
 
 	@Override
@@ -180,26 +202,20 @@ public class EstudioClinicoBucles implements EstudioClinico {
 	public Map<String, Double> edadMediaPacientesPorPorGenero() {
 		//
 		Map<String, Double> res = new HashMap<>();
-		List<Double> edadesMale = new ArrayList<>();
-		List<Double> edadesFemale = new ArrayList<>();
-		for (PacienteEstudio p : this.listaPacientes) {
-			if (p.genero().equals("Male")) {
-				edadesMale.add(p.edad());
-			} else {
-				edadesFemale.add(p.edad());
-			}
-		}
-		double mediaMale = 0;
-		double mediaFemale = 0;
-		for(Double edad : edadesMale){
-			mediaMale = mediaMale + edad;
-		}
-		for (Double edad : edadesFemale) {
-			mediaFemale = mediaFemale + edad;
-		}
-		res.put("Male", mediaMale / edadesMale.size());
-		res.put("Female", mediaFemale / edadesFemale.size());
+		Map<String, List<PacienteEstudio>> pacPorGenero = agruparPacientesEdadMayorQuePorGenero(0.);
+		double mediaHombres = media(pacPorGenero.get("Male"));
+		double mediaMujeres = media(pacPorGenero.get("Female"));
+		res.put("Male", mediaHombres);
+		res.put("Female", mediaMujeres);
 		return res;
+	}
+
+	private double media(List<PacienteEstudio> l) {
+		double sumEdad = 0.;
+		for (PacienteEstudio p : l) {
+			sumEdad = sumEdad + p.edad();
+		}
+		return sumEdad / l.size();
 	}
 
 }

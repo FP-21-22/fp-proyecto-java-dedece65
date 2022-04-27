@@ -1,52 +1,68 @@
 package fp.clinico;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 public class EstudioClinicoStreams implements EstudioClinico {
 
+	// ENTREGA DESDE AQUÍ
+
+	private final List<PacienteEstudio> listaPacientes;
+
+	public EstudioClinicoStreams(List<PacienteEstudio> listaPacientes) {
+		this.listaPacientes = listaPacientes;
+	}
+
+	public EstudioClinicoStreams() {
+		listaPacientes = new ArrayList<>();
+	}
+
 	@Override
 	public Integer numeroPacientes() {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		return this.listaPacientes.size();
 	}
 
 	@Override
 	public void incluyePaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-
+		//
+		this.listaPacientes.add(paciente);
 	}
 
 	@Override
 	public void incluyePacientes(Collection<PacienteEstudio> pacientes) {
-		// TODO Auto-generated method stub
-
+		//
+		this.listaPacientes.addAll(pacientes);
 	}
 
 	@Override
 	public void eliminaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-
+		//
+		this.listaPacientes.remove(paciente);
 	}
 
 	@Override
 	public Boolean estaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		return this.listaPacientes.contains(paciente);
 	}
 
 	@Override
 	public void borraEstudio() {
-		// TODO Auto-generated method stub
-
+		//
+		this.listaPacientes.clear();
 	}
 
 	@Override
 	public EstudioClinico of(String nombreFichero) {
-		// TODO Auto-generated method stub
-		return null;
+		//
+		List<PacienteEstudio> pacientes = leeFichero(nombreFichero);
+		return new EstudioClinicoStreams(pacientes);
 	}
+
+	// HASTA AQUÍ
 
 	@Override
 	public List<PacienteEstudio> leeFichero(String nombreFichero) {
@@ -85,7 +101,7 @@ public class EstudioClinicoStreams implements EstudioClinico {
 	}
 
 	@Override
-	public Map<String, List<Paciente>> agruparPacientesEdadMayorQuePorGenero(Double edad) {
+	public Map<String, List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad) {
 		// TODO Auto-generated method stub
 		return null;
 	}

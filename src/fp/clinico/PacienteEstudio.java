@@ -13,11 +13,10 @@ public record PacienteEstudio(String id, String genero, Double edad, Boolean hip
 		Checkers.check("La edad debe estar entre 0 y 130", edad >= 0 && edad <= 130);
 		Checkers.check("El nivel medio de glucosa debe ser mayor o igual que 0", nivelMedioGlucosa >= 0);
 		// ----------------------------------
-		PacienteEstudio res = new PacienteEstudio(id, genero, edad, hipertension, enfermedadCorazon, tipoResidencia, nivelMedioGlucosa);
-		return res;
+		return new PacienteEstudio(id, genero, edad, hipertension, enfermedadCorazon, tipoResidencia, nivelMedioGlucosa);
 	}
 	public static PacienteEstudio parse(String cadena) {
-		// Ejemplo Cadena - “6306;Male;80;false;false;URBANA;83.84”
+		// Ejemplo Cadena - ï¿½6306;Male;80;false;false;URBANA;83.84ï¿½
 		//
 		Checkers.checkNoNull("Linea vacia", cadena);
 		String[] pacienteEstudio = cadena.split(";");
@@ -32,15 +31,11 @@ public record PacienteEstudio(String id, String genero, Double edad, Boolean hip
 		return PacienteEstudio.of(id, genero, edad, hipertension, enfermedadCorazon, tipoResidencia, nivelMedioGlucosa);
 	}
 
-	// Metodo derivado - (factorDeRiesgo --> true si tiene hipertensión y mas de 40 años)
+	// Metodo derivado - (factorDeRiesgo --> true si tiene hipertensiï¿½n y mas de 40 aï¿½os)
 	public Boolean factorDeRiesgo() {
 		//
-		Boolean riesgo;
-		if(hipertension == true && edad>40) {
-			riesgo = true;
-		}else {
-			riesgo = false;
-		}
+		boolean riesgo;
+		riesgo = hipertension && edad > 40;
 		return riesgo;
 	}
 
@@ -68,8 +63,7 @@ public record PacienteEstudio(String id, String genero, Double edad, Boolean hip
 
 	// Representacion como cadena
 	public String representacionCadena() {
-		String res = this.id()+","+this.edad();
-		return res;
+		return this.id()+","+this.edad();
 	}
 	
 	@Override
@@ -83,12 +77,10 @@ public record PacienteEstudio(String id, String genero, Double edad, Boolean hip
 
 	public int compareTo(PacienteEstudio p) {
 		//
-		int res = this.edad().compareTo(p.edad());
-		return res;
+		return this.edad().compareTo(p.edad());
 	}
 	public int compareTo1(PacienteEstudio p) {
-		int res = this.id().compareTo(p.id());
-		return res;
+		return this.id().compareTo(p.id());
 	}
 
 	// Metodo main
