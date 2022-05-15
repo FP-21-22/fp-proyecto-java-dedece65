@@ -10,6 +10,7 @@ public class TestFactoriaVacunaciones {
         List<Vacunacion> vacunas = FactoriaVacunaciones.leeFichero("data/ccaa_vacunas_3.csv");
         for (Vacunacion v : vacunas) {
             System.out.println(v);
+            System.out.println(v.numeroTotal());
         }
     }
 }

@@ -200,22 +200,24 @@ public class EstudioClinicoBucles implements EstudioClinico {
 
 	@Override
 	public Map<String, Double> edadMediaPacientesPorPorGenero() {
-		//
+		//{Male=41.45878042397276, Female=42.47969699735326, Other=7.5}
 		Map<String, Double> res = new HashMap<>();
-		Map<String, List<PacienteEstudio>> pacPorGenero = agruparPacientesEdadMayorQuePorGenero(0.);
-		double mediaHombres = media(pacPorGenero.get("Male"));
-		double mediaMujeres = media(pacPorGenero.get("Female"));
-		res.put("Male", mediaHombres);
-		res.put("Female", mediaMujeres);
+		for(PacienteEstudio p : this.listaPacientes){
+			res.put(p.genero(), mediaEdadSegunGenero(p.genero()));
+		}
 		return res;
 	}
 
-	private double media(List<PacienteEstudio> l) {
+	private double mediaEdadSegunGenero(String genero) {
 		double sumEdad = 0.;
-		for (PacienteEstudio p : l) {
-			sumEdad = sumEdad + p.edad();
+		int cont = 0;
+		for (PacienteEstudio p : this.listaPacientes) {
+			if (p.genero().equals(genero)) {
+				sumEdad = sumEdad + p.edad();
+				cont++;
+			}
 		}
-		return sumEdad / l.size();
+		return sumEdad / cont;
 	}
 
 }

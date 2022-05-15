@@ -17,7 +17,6 @@ public class TestEstudioClinicoBucles {
 //        for(PacienteEstudio p : lista){
 //            System.out.println(p);
 //        }
-        System.out.println(estudio.estaPaciente(new PacienteEstudio("36306", "Male", Double.parseDouble("80"), false,
-                false, URBANA, 83.84)));
+        System.out.println(estudio.edadMediaPacientesPorPorGenero());
     }
 }

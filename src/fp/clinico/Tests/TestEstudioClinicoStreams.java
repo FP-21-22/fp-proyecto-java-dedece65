@@ -11,5 +11,6 @@ public class TestEstudioClinicoStreams {
         String ruta = "data/estudio_clinico.csv";
         List<PacienteEstudio> lista = estudio.leeFichero(ruta);
         estudio.incluyePacientes(lista);
+        System.out.println(estudio.edadMediaPacientesPorPorGenero());
     }
 }
