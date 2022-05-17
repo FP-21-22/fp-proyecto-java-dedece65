@@ -129,7 +129,8 @@ public class EstudioClinicoStreams implements EstudioClinico {
 	public Double edadMediaPacientesConFactorRiesgo() {
 		//
 		List<PacienteEstudio> pacientesRiesgo = this.listaPacientes.stream()
-				.filter(PacienteEstudio::factorDeRiesgo).toList();
+				.filter(PacienteEstudio::factorDeRiesgo)
+				.toList();
 		double edadTotal = 0;
 		for (PacienteEstudio p : pacientesRiesgo) {
 			edadTotal = edadTotal + p.edad();
