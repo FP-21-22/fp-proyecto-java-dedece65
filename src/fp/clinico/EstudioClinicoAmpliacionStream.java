@@ -2,7 +2,6 @@ package fp.clinico;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class EstudioClinicoAmpliacionStream extends EstudioClinicoStreams implements EstudioClinicoAmpliacion{
     //
