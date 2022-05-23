@@ -10,7 +10,7 @@ import java.util.*;
 
 public class EstudioClinicoBucles implements EstudioClinico {
 
-	private final List<PacienteEstudio> listaPacientes;
+	protected final List<PacienteEstudio> listaPacientes;
 
 	public EstudioClinicoBucles() {
 		listaPacientes = new ArrayList<>();

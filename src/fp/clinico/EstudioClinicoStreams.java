@@ -12,7 +12,7 @@ public class EstudioClinicoStreams implements EstudioClinico {
 
 	// ENTREGA DESDE AQUÍ
 
-	private final List<PacienteEstudio> listaPacientes;
+	protected final List<PacienteEstudio> listaPacientes;
 
 	public EstudioClinicoStreams(List<PacienteEstudio> listaPacientes) {
 		this.listaPacientes = listaPacientes;

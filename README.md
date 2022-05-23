@@ -161,7 +161,127 @@ que recibe como argumento la propiedad).
 
 **Otras operaciones**:
  
--	Clase FactoriaMedicamentos: Se ha programado una clase FactoriaMedicamentos que incluye, de momento, un metodo static de nombre 
+- Clase FactoriaMedicamentos: Se ha programado una clase FactoriaMedicamentos que incluye, de momento, un metodo static de nombre 
 parseaMedicamento, que recibe una cadena con un formato especifico y devuelve un objeto del tipo Medicamento.
-- 	Clase TestFactoriaMedicamentos: Se ha implementado tambien una clase de nombre TestFactoriaMedicamentos que comprueba el correcto funcionamiento
+- Clase TestFactoriaMedicamentos: Se ha implementado tambien una clase de nombre TestFactoriaMedicamentos que comprueba el correcto funcionamiento
 del metodo anterior.
+
+
+## Interfaz EstudioClinico
+
+**Métodos**:
+
+- numeroPacientes() : muestra el número de pacientes.
+- incluyePaciente(PacienteEstudio paciente) : añade el paciente dado como parámetro a la lista.
+- incluyePacientes(Collection<PacienteEstudio> pacientes) : añade los pacientes dados como parámetro a la lista.
+- eliminaPaciente(PacienteEstudio paciente) : elimina el paciente dado como parámetro.
+- estaPaciente(PacienteEstudio paciente) : devuelve true o false si esta o no el paciente dado como parámetro en la lista de pacientes.
+- borraEstudio() : borra la lista completa de pacientes.
+- of(String nombreFichero) : metodo de factoria.
+- leeFichero(String nombreFichero) : lee el fichero dado como parámetro
+- todosPacienteSonDelTipo(TipoResidencia tipo) : comprueba si todos los pacientes son del tipo dado como parámetro.
+- existeAlgunPacienteDelTipo(TipoResidencia tipo) : comprueba si hay algun paciente con el tipo dado como parámetro.
+- numeroPacientesFactorRiesgo() : muestra el numero de pacientes con FactorRiesgo true.
+- filtraPacientesPorEdad(Double edad) : muestra todos los pacientes con la edad introducida como parámetro.
+- agruparPacientesEdadMayorQuePorGenero(Double edad) : agrupa los pacientes mayores que la edad introducida como parámetro por género.
+- numeroPacientesPorGenero() : muestra los géneros que forman la lista de pacientes junto con el número de pacientes de cada uno.
+- edadMediaPacientesPorPorGenero() : muestra la edad media de los pacientes de cada género.
+
+**Clases que usan esta interfaz**:
+
+- EstudioClinicoBucles : metodos programados con bucles.
+- EstudioClinicoStreams : metodos programados con .stream().
+
+## Clase Vacunaciones
+
+- Ubicada en el paquete fp.vacunas
+
+**Constructor**:
+
+- Un único constructor que recibe un Stream con objetos del tipo Vacunacion e inicializa el atributo con los objetos de dicho Stream.
+
+**Métodos**:
+
+- anyadeVacunacion: dado un objeto del tipo Vacunacion lo añade al atributo de
+  List< Vacunacion>.
+- vacunacionesEntreFechas: dadas dos fechas como parámetros de entrada, devuelve
+  una lista con aquellas vacunaciones entre dichas fechas.
+- existeNumPersonasPautaCompletaPorEncimaDe: dada una comunidad y un valor
+  entero, indica si existen o no vacunaciones con un número de personas con la pauta
+  completa de vacunación por encima del valor entero dado.
+- diaMasVacunacionesEn: dada una comunidad, devuelve la fecha en la que hubo más
+  personas vacunadas.
+- vacunacionesPorFecha: devuelve un mapa, o diccionario, en el que las claves son las
+  fechas y los valores son listas de vacunaciones asociadas a dichas fechas.
+- maximoNumTotalVacunasporComunidad: devuelve un mapa, o diccionario, en el
+  que las claves son las comunidades y los valores son el máximo para el número total
+  de vacunas puestas para cada comunidad.
+
+## Clase ListadoMedicamentos
+
+- Ubicada en el paquete fp.farmaceutico
+
+**Constructor**:
+
+- Un único constructor que recibe un Stream con objetos del tipo Medicamento e inicializa el atributo con los objetos de dicho Stream.
+
+**Métodos**:
+
+- existeMedicamentoSegunTipoAnteriorA: dado un tipo de medicamento y una fecha,
+  indica si existe un medicamento de dicho tipo posterior a la fecha dada.
+- nombreMedicamentosPuntuacionMayorA: dada una puntuación, devuelve un
+  conjunto con los nombres de los medicamentos con una puntuación mayor a la dada.
+- nombreMedicamentoMayorIndiceSomaticoSegunTipoMedicamento: dado un tipo
+  de medicamento, devuelve el nombre del medicamento con mayor índice somático.
+  En caso de no haber ninguno, se eleva una excepción.
+- agrupaTipoMedicamentoSegunPuntuacionMedia: devuelve un diccionario que
+  asocia a cada tipo de medicamento su puntuación media.
+- fechaCatalogoMasFrecuente: devuelve la fecha del catálogo más frecuente, es decir,
+  la que aparece más veces.
+
+## Metodos Adicionales (Interfaz EstudioClinicoAmpliación)
+
+**Metodos que incluye esta interfaz**:
+
+Map<TipoResidencia,Integer> agruparNumeroPacientesPorTipoResidencia();
+- Un método que devuelva un diccionario cuyas claves son el tipo de residencia y cuyos valores
+asociados son el número de pacientes de cada tipo. Tenga en cuenta que los valores son de tipo
+Integer.
+
+Map<TipoResidencia,Double> agruparNivelMedioGlucosaMedioPorTipoResidencia();
+- Un método que devuelva un diccionario cuyas claves son el tipo de residencia y cuyo valor asociado
+es la media del valor medio de glucosa de los pacientes.
+
+Map<TipoResidencia,PacienteEstudio> agruparNivelMedioGlucosaMaximoPorTipoResidencia();
+- Un método que devuelva un diccionario cuyas claves son el tipo de residencia y cuyo valor asociado
+es el paciente con mayor nivel medio de glucosa. Tenga en cuenta que los valores son de tipo
+PacienteEstudio y no del tipo Optional< PacienteEstudio>.
+
+Map<String,List< PacienteEstudio>> agrupaPacientesPorGenero();
+- Un método que devuelva un diccionario cuyas claves son el género del paciente y cuyos valores son
+las listas de pacientes asociados a cada género.
+
+Map<String,Set< PacienteEstudio>> agrupaPacientesPorPorGeneroEnConjunto();
+- Un método que devuelva un diccionario cuyas claves son el género del paciente y cuyos valores son
+los conjuntos de pacientes asociados a cada género.
+
+Map<String,SortedSet< PacienteEstudio>> agrupaPacientesPorPorGeneroEnConjuntoOrdenado();
+- Un método que devuelva un diccionario cuyas claves son el género del paciente y cuyos valores son
+los conjuntos de pacientes asociados a cada género.
+
+Map<String,PacienteEstudio> pacienteEdadMaximaPacientesPorGenero();
+- Un método que devuelva un diccionario cuyas claves son el género del paciente y cuyo valor es el
+paciente con mayor edad. Tenga en cuenta que los valores son de tipo PacienteEstudio y no del tipo
+Optional< PacienteEstudio>.
+
+Map<String,List< Double>> listaEdadesPorGenero();
+- Un método que devuelva un diccionario cuyas claves son el género del paciente y cuyos valores son
+listas de edades de los pacientes de cada género.
+
+Map<String,Double> edadMaximaPacientesPorGenero();
+- Un método que devuelva un diccionario cuyas claves son el género del paciente y cuyos valores son
+listas de edades de los pacientes de cada género.
+
+String generoEdadMaximaPacientesPorGenero();
+- Un método que devuelva el género del paciente con más edad. Este método puede hacerlo
+basándose en el diccionario que devuelve el método edadMaximaPacientesPorGenero(). 

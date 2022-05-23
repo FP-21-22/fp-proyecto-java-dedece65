@@ -1,12 +1,11 @@
 package fp.vacunas;
 
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@SuppressWarnings({"OptionalGetWithoutIsPresent", "unused"})
 public class Vacunaciones {
 
     private final List<Vacunacion> vacunaciones;
@@ -33,6 +32,7 @@ public class Vacunaciones {
     public LocalDate  diaMasVacunacionesEn(String comunidad){
         //
         return this.vacunaciones.stream()
+                .filter(x->x.comunidad().equals(comunidad))
                 .max(Comparator.comparing(Vacunacion::numeroTotal))
                 .get()
                 .fecha();
@@ -47,25 +47,14 @@ public class Vacunaciones {
     }
 
     public Map<String, Integer> maximoNumTotalVacunasporComunidad(){
-        //devuelve un mapa, o diccionario, en el
-        //que las claves son las comunidades y los valores son el máximo para el número total
-        //de vacunas puestas para cada comunidad
-        //OPCION 1 - CREANDO UN MAPA AUXILIAR
-//        Map<String, List<Vacunacion> aux= this.vacunaciones.stream()
-//                .collect(Collectors.groupingBy(
-//                        Vacunacion::comunidad
-//                ));
-//        aux.values();
-
-        //OPCION 2 - BUSCANDO HACERLO DIRECTAMENTE
-//        return this.vacunaciones.stream()
-//                .collect(Collectors.groupingBy(
-//                        Vacunacion::comunidad,
-//                        Collectors.collectingAndThen(
-//                                Collectors.maxBy((x,y)->x.numeroTotal().compareTo(y.numeroTotal())),
-//                                null
-//                        )
-//                ));
-        return null;
+        //
+        return this.vacunaciones.stream()
+                .collect(Collectors.groupingBy(
+                        Vacunacion::comunidad,
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparing(Vacunacion::numeroTotal)),
+                                opt->opt.get().numeroTotal()
+                                )
+                ));
     }
 }
