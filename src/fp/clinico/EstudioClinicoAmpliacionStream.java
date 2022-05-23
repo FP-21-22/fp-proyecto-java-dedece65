@@ -126,13 +126,13 @@ public class EstudioClinicoAmpliacionStream extends EstudioClinicoStreams implem
 
     @Override
     public String generoEdadMaximaPacientesPorGenero() {
-        //
-        Double maximo = edadMaximaPacientesPorGenero().values().stream()
-                .sorted()
-                .toList()
-                .get(edadMaximaPacientesPorGenero().values().size() - 1);
-        List<Map.Entry<String, Double>> generoConEdadMaxima = edadMaximaPacientesPorGenero().entrySet().stream()
-                .filter(x -> x.getValue().equals(maximo)).toList();
+//        //
+//        Double maximo = edadMaximaPacientesPorGenero().values().stream()
+//                .sorted()
+//                .toList()
+//                .get(edadMaximaPacientesPorGenero().values().size() - 1);
+//        List<Map.Entry<String, Double>> generoConEdadMaxima = edadMaximaPacientesPorGenero().entrySet().stream()
+//                .filter(x -> x.getValue().equals(maximo)).toList();
         return null;
     }
 }
