@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EstudioClinicoStreams implements EstudioClinico {
 
@@ -22,6 +23,7 @@ public class EstudioClinicoStreams implements EstudioClinico {
 		listaPacientes = new ArrayList<>();
 	}
 
+	public EstudioClinicoStreams(Stream<PacienteEstudio> st){this.listaPacientes = st.toList();}
 	@Override
 	public Integer numeroPacientes() {
 		//

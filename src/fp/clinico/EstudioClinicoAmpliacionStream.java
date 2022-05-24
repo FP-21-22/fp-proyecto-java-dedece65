@@ -2,6 +2,7 @@ package fp.clinico;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EstudioClinicoAmpliacionStream extends EstudioClinicoStreams implements EstudioClinicoAmpliacion{
     //
@@ -13,9 +14,9 @@ public class EstudioClinicoAmpliacionStream extends EstudioClinicoStreams implem
         super(lista);
     }
 
-//    public EstudioClinicoAmpliacionStream(Stream<PacienteEstudio> st){
-//        super(st);
-//    }
+    public EstudioClinicoAmpliacionStream(Stream<PacienteEstudio> st){
+        super(st);
+    }
 
     @Override
     public Map<TipoResidencia, Integer> agruparNumeroPacientesPorTipoResidencia() {
@@ -126,13 +127,10 @@ public class EstudioClinicoAmpliacionStream extends EstudioClinicoStreams implem
 
     @Override
     public String generoEdadMaximaPacientesPorGenero() {
-//        //
-//        Double maximo = edadMaximaPacientesPorGenero().values().stream()
-//                .sorted()
-//                .toList()
-//                .get(edadMaximaPacientesPorGenero().values().size() - 1);
-//        List<Map.Entry<String, Double>> generoConEdadMaxima = edadMaximaPacientesPorGenero().entrySet().stream()
-//                .filter(x -> x.getValue().equals(maximo)).toList();
-        return null;
+        //
+        return edadMaximaPacientesPorGenero().entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getKey();
     }
 }

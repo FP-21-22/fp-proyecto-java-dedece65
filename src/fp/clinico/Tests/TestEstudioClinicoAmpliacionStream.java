@@ -10,6 +10,6 @@ public class TestEstudioClinicoAmpliacionStream {
         EstudioClinicoAmpliacionStream estudio = new EstudioClinicoAmpliacionStream();
         List<PacienteEstudio> lista = estudio.leeFichero("data/estudio_clinico.csv");
         estudio.incluyePacientes(lista);
-        System.out.println(estudio.edadMaximaPacientesPorGenero());
+        System.out.println(estudio.generoEdadMaximaPacientesPorGenero());
     }
 }
